@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - Modern Webpage</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+                        'bounce-subtle': 'bounceSubtle 2s infinite',
+                        'pulse-glow': 'pulseGlow 3s infinite',
+                    },
+                    keyframes: {
+                        fadeInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        bounceSubtle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Smooth transition for dark mode */
+        body {
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+    </style>
+</head>
+<body class="h-full bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans flex flex-col justify-between selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+
+    <!-- Header with Theme Toggle -->
+    <header class="w-full max-w-5xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                HW
+            </div>
+            <span class="font-semibold text-lg tracking-tight text-slate-700 dark:text-slate-200">Hello App</span>
+        </div>
+        
+        <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+        </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-2xl w-full mx-auto text-center space-y-8 animate-fade-in-down">
+            
+            <!-- Dynamic Badge -->
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900 text-indigo-600 dark:text-indigo-400 text-sm font-medium shadow-sm">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                </span>
+                <span id="greetingTime">歡迎來到網頁世界</span>
+            </div>
+
+            <!-- Title Section -->
+            <div class="space-y-4">
+                <h1 id="mainTitle" class="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 py-2">
+                    Hello World!
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-md mx-auto font-normal leading-relaxed">
+                    這是一個精心設計且具備互動效果的 HTML5 範例網頁。
+                </p>
+            </div>
+
+            <!-- Interactive Card Area -->
+            <div class="bg-white dark:bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700/50 max-w-md mx-auto transition-all duration-300 hover:shadow-2xl">
+                <h2 class="text-sm uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold mb-4">互動體驗區</h2>
+                
+                <!-- Counter Value -->
+                <div class="text-5xl font-extrabold text-slate-800 dark:text-white mb-6 font-mono" id="counterValue">
+                    0
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center justify-center space-x-3">
+                    <button id="decrementBtn" class="flex-1 py-3 px-4 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95">
+                        <i class="fa-solid fa-minus mr-1"></i> 減少
+                    </button>
+                    
+                    <button id="resetBtn" title="重設" class="p-3 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 active:scale-95">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+
+                    <button id="incrementBtn" class="flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-md shadow-indigo-500/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 active:scale-95">
+                        <i class="fa-solid fa-plus mr-1"></i> 增加
+                    </button>
+                </div>
+            </div>
+
+            <!-- Greetings Changer -->
+            <div class="pt-4">
+                <button id="changeGreetingBtn" class="inline-flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> 切換語言招呼語
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-5xl mx-auto px-6 py-6 text-center text-sm text-slate-400 dark:text-slate-600">
+        <p>© 2026 Modern Hello World Page. Created with care.</p>
+    </footer>
+
+    <!-- Interactive JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dark Mode Toggle Logic
+            const htmlTag = document.documentElement;
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+
+            // System dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlTag.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlTag.classList.contains('dark')) {
+                    htmlTag.classList.remove('dark');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    htmlTag.classList.add('dark');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+
+            // Dynamic Time Greeting
+            const greetingTime = document.getElementById('greetingTime');
+            const hour = new Date().getHours();
+            let timeText = '你好，世界！';
+            if (hour >= 5 && hour < 12) timeText = '早安！歡迎來到網頁世界';
+            else if (hour >= 12 && hour < 18) timeText = '午安！歡迎來到網頁世界';
+            else timeText = '晚上好！歡迎來到網頁世界';
+            greetingTime.textContent = timeText;
+
+            // Interactive Counter
+            let count = 0;
+            const counterValue = document.getElementById('counterValue');
+            const incrementBtn = document.getElementById('incrementBtn');
+            const decrementBtn = document.getElementById('decrementBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            function updateCounter() {
+                counterValue.textContent = count;
+                // Add quick pop animation
+                counterValue.classList.add('scale-110');
+                setTimeout(() => counterValue.classList.remove('scale-110'), 150);
+            }
+
+            incrementBtn.addEventListener('click', () => {
+                count++;
+                updateCounter();
+            });
+
+            decrementBtn.addEventListener('click', () => {
+                count--;
+                updateCounter();
+            });
+
+            resetBtn.addEventListener('click', () => {
+                count = 0;
+                updateCounter();
+            });
+
+            // Multi-language Greeting Switcher
+            const mainTitle = document.getElementById('mainTitle');
+            const changeGreetingBtn = document.getElementById('changeGreetingBtn');
+            
+            const greetings = [
+                "Hello, World!",                    // 英語
+                "你好，世界！",                       // 繁體中文
+                "你好，世界！",                       // 簡體中文
+                "Bonjour le monde !",               // 法語
+                "¡Hola, mundo!",                     // 西班牙語
+                "Hallo, Welt!",                      // 德語
+                "Ciao, mondo!",                      // 義大利語
+                "Olá, mundo!",                       // 葡萄牙語
+                "Привет, мир!",                      // 俄語
+                "こんにちは、世界！",                 // 日語
+                "안녕하세요, 세계!",                   // 韓語
+                "مرحبا بالعالم!",                    // 阿拉伯語
+                "नमस्ते दुनिया!",                    // 印地語
+                "สวัสดีชาวโลก!",                     // 泰語
+                "Xin chào thế giới!",                // 越南語
+                "Halo, dunia!",                      // 印尼語
+                "שלום עולם!",                         // 希伯來語
+                "გამარჯობა, მსოფლიო!",              // 格魯吉亞語
+                "Ahoj, světe!",                      // 捷克語
+                "Hej, världen!",                     // 瑞典語
+                "Hei, maailma!",                     // 芬蘭語
+                "Witaj, świecie!",                   // 波蘭語
+                "Привіт, світе!"                     // 烏克蘭語
+            ];
+            
+            let greetingIndex = 0;
+
+            changeGreetingBtn.addEventListener('click', () => {
+                greetingIndex = (greetingIndex + 1) % greetings.length;
+                mainTitle.style.opacity = '0';
+                mainTitle.style.transform = 'translateY(-10px)';
+                
+                setTimeout(() => {
+                    mainTitle.textContent = greetings[greetingIndex];
+                    mainTitle.style.transition = 'all 0.3s ease';
+                    mainTitle.style.opacity = '1';
+                    mainTitle.style.transform = 'translateY(0)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
